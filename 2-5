@@ -1,0 +1,77 @@
+# Gradient Descent 筆記
+
+來源：[Gradient Descent, Visualized | Ep.13](https://www.youtube.com/watch?v=BHgssEwMxsY)
+
+---
+
+## 一句話總結
+
+> Gradient Descent 是一種用「導數」找最小值的演算法，靠不斷往「成本函數斜率為負」的方向走，來調整參數。
+
+---
+
+##  Gradient Descent 流程步驟（以 Linear Regression 為例）
+
+1. **Forward pass**：根據當前參數預測 $y_{pred}$
+2. **計算損失**：$L = (y_{pred} - y)^2$
+3. **反向傳播**：使用鏈式法則計算 $\frac{\partial L}{\partial w}$
+4. **參數更新**：
+   $$
+   w := w - \eta \cdot \frac{\partial L}{\partial w}
+   $$
+
+---
+##  圖像化直覺
+
+- 想像自己站在一個 U 型谷上方，每次看腳下的坡度，往下走一小步。
+- 導數 $\nabla$ 告訴你坡的方向與斜度。
+- 學習率 $\eta$ 決定你每一步要走多遠。
+
+![](https://upload.wikimedia.org/wikipedia/commons/1/1b/Gradient_descent.svg)
+
+---
+
+##  損失函數特性
+
+- 使用的損失函數為：
+  $$
+  L(w) = (y_{pred} - y)^2 = (w \cdot x - y)^2
+  $$
+- 這是一個關於 $w$ 的二次函數，因此圖像為「U 型」
+- 在 minimum 處導數為 0，演算法會停止更新
+
+---
+
+## 常見錯誤與陷阱
+
+| 問題                             | 結果               |
+|----------------------------------|--------------------|
+| 學習率 $\eta$ 太大               | 發散、跳來跳去     |
+| 學習率 $\eta$ 太小               | 收斂太慢           |
+| 不清楚導數算的是哪個變數的變化 | 參數更新方向錯誤   |
+| 忘了更新參數的方向要「負的梯度」 | 永遠無法收斂       |
+
+---
+
+## 📌 對自己的提醒
+
+- 導數是什麼？是變化率，是告訴你「往哪邊會變大」，所以我們要往反方向走。
+- 梯度下降不會一步到位，它是一種「慢慢往下走」的方式。
+- Linear Regression 中 loss function 是 convex 的，所以只要學習率合理，一定會收斂。
+
+---
+
+##  延伸學習
+
+- ➕ [Backpropagation 筆記](backpropagation_notes.md)
+- ➕ [SGD 與 Mini-batch 比較筆記](sgd_vs_batch.md)
+- 📘 推薦教材：《Deep Learning》（Ian Goodfellow）Ch.4
+
+---
+
+## 想法筆記
+
+> 這支影片幫助我理解了「為什麼是減去梯度」、「為什麼學習率會影響收斂」這些以前不懂的事。  
+> 下一步我想要試著自己實作一個簡單的 GD 模型。
+
+---
